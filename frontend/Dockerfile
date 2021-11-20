@@ -2,13 +2,6 @@ FROM node:lts
 
 WORKDIR /opt/next
 COPY . .
-# COPY ./pages ./pages
-# COPY ./public ./public
-# COPY ./styles ./styles
-# COPY ./next-env.d.ts ./next-env.d.ts
-# COPY ./package.json ./package.json
-# COPY ./yarn.lock ./yarn.lock
-# COPY ./tsconfig.json ./tsconfig.json
 
 RUN yarn install
 RUN yarn run build

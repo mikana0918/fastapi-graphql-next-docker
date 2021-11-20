@@ -8,6 +8,7 @@ authors = ["mikana0918 <shogo.kusuhara@gmail.com>"]
 python = "^3.8"
 fastapi = "^0.70.0"
 uvicorn = "^0.15.0"
+strawberry-graphql = "^0.87.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
