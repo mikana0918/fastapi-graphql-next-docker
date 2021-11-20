@@ -1,15 +1,16 @@
-from typing import Optional
-
 from fastapi import FastAPI
+from starlette.graphql import GraphQLApp
 
+from api.models import db_session
+from api.schema import schema
+
+# FastAPIのインスタンスを作成
 app = FastAPI()
 
+# GraphQLを提供するためのエンドポイントを定義
+app.add_route("/graphql", GraphQLApp(schema=schema))
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+# APIサーバシャットダウン時にDBセッションを削除
+@app.on_event("shutdown")
+def shutdown_event():
+    db_session.remove()
